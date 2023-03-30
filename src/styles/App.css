@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  background-image: url('https://res.cloudinary.com/dovuffpii/image/upload/v1679449173/mdays-great-race/Monrovia-Days-Carnival_fgp1px.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: normal;
+}

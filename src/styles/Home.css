@@ -1,0 +1,60 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.home-card {
+  color: rgb(1, 58, 92);
+  background-color: #fff;
+  align-content: center;
+  justify-content: center;
+  width: 320px;
+  max-width: 95vw;
+  height: 83vh;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  align-content: center;
+}
+
+.greeting {
+  text-align: center;
+}
+
+.footer {
+  position: relative;
+  height: 80px;
+  background-color: #013A5C;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.footer-buttons {
+  max-width: 320px;
+  margin: auto;
+}
+
+.footer-button {
+  justify-content: space-evenly;
+  align-content: center;
+  margin-top: 24px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 20px;
+  color:  #fff;
+  background-color: #013A5C;
+  border: none;
+}
+
+.footer-button:hover{
+  color: #D91F26;
+  cursor: pointer;
+}
