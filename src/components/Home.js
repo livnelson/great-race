@@ -2,11 +2,11 @@ import { useState, useEffect } from "react"
 import Rules from "./Rules"
 import Stats from "./Stats"
 import Logout from "./Logout"
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faRankingStar } from '@fortawesome/free-solid-svg-icons'
-// import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-// import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons'
-// import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRankingStar } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons'
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import '../styles/Home.css'
 
 function Home() {
@@ -14,10 +14,10 @@ function Home() {
   const [viewStats, setViewStats] = useState(false)
   const [viewLogout, setViewLogout] = useState(false)
 
-  // const stats = <FontAwesomeIcon icon={faRankingStar} />
-  // const logout = <FontAwesomeIcon icon={faRightFromBracket} />
-  // const rules = <FontAwesomeIcon icon={faScaleBalanced} />
-  // const home = <FontAwesomeIcon icon={faHouse} />
+  const stats = <FontAwesomeIcon icon={faRankingStar} />
+  const logout = <FontAwesomeIcon icon={faRightFromBracket} />
+  const rules = <FontAwesomeIcon icon={faScaleBalanced} />
+  const home = <FontAwesomeIcon icon={faHouse} />
   function handleRules() {
     if (viewStats === true) setViewStats(!viewStats)
     if (viewLogout === true) setViewLogout(!viewLogout)
@@ -59,10 +59,10 @@ function Home() {
 
       <div className='footer'>
         <div className='footer-buttons'>
-          <button className='footer-button' onClick={handleHome}>home</button>
-          <button className='footer-button' onClick={handleStats}>stats</button>
-          <button className='footer-button' onClick={handleRules}>rules</button>
-          <button className='footer-button' onClick={handleLogout}>logout</button>
+          <button className='footer-button' onClick={handleHome}>{home}</button>
+          <button className='footer-button' onClick={handleStats}>{stats}</button>
+          <button className='footer-button' onClick={handleRules}>{rules}</button>
+          <button className='footer-button' onClick={handleLogout}>{logout}</button>
         </div>
       </div>
     </div>
