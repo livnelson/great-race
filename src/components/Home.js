@@ -43,7 +43,7 @@ function Home() {
     if (viewRules === true) setViewRules(!viewRules)
     if (viewStats === true) setViewStats(!viewStats)
     setViewLogout(!viewLogout)
-    console.log('stats clicked')
+    console.log('logout clicked')
   }
 
   return (

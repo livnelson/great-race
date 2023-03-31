@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://216.165.251.52:3333",
+  "proxy": "http://216.165.251.52:3333/",
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",

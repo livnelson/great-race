@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/Login.css'
 
 function Signup() {
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -12,23 +12,24 @@ function Signup() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    // setIsLoading(true);
-    // fetch("/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ username, password }),
-    // }).then((r) => {
-    //   setIsLoading(false);
-    //   if (r.ok) {
-    //     r.json().then((user) => {
-    //       console.log(user)
-    //     });
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    setIsLoading(true);
+    fetch("/signup", {
+      mode: "no-cors",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    }).then((r) => {
+      setIsLoading(false);
+      if (r.ok) {
+        r.json().then((user) => {
+          console.log(user)
+        });
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
 
   function handleLogin() {
@@ -51,8 +52,8 @@ function Signup() {
                 placeholder="Enter Username"
                 type="text"
                 id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <br />
@@ -67,7 +68,7 @@ function Signup() {
               />
               <br />
               {isLoading ? "Loading..." : null}
-              <button className="login-button" type="submit">Sign In</button>
+              <button className="login-button" type="submit">Sign Up</button>
             </form>
           </div>
           {errors ? <div className="errors">{errors}</div> : null}

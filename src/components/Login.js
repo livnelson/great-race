@@ -1,39 +1,40 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/Login.css";
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import "../styles/Login.css"
 
 function Login() {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [errors, setErrors] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [username, setUsername] = useState("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [errors, setErrors] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
 
-	const navigate = useNavigate();
+	const navigate = useNavigate()
 
 	function handleSubmit(e) {
-		e.preventDefault();
-		setIsLoading(true);
+		e.preventDefault()
+		setIsLoading(true)
 		fetch("/login", {
 			mode: "no-cors",
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ username, password }),
+			body: JSON.stringify({ email, password }),
 		}).then((r) => {
-			setIsLoading(false);
+			setIsLoading(false)
 			if (r.ok) {
 				r.json().then((user) => {
-					console.log(user);
-				});
+					console.log(user)
+				})
 			} else {
-				r.json().then((err) => setErrors(err.errors));
+				r.json().then((err) => setErrors(err.errors))
 			}
-		});
+		})
 	}
 
 	function handleSignUp() {
-		navigate("/");
+		navigate("/")
 	}
 
 	return (
@@ -55,8 +56,8 @@ function Login() {
 								placeholder="Enter Username"
 								type="text"
 								id="username"
-								value={username}
-								onChange={(e) => setUsername(e.target.value)}
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
 							<br />
@@ -87,7 +88,7 @@ function Login() {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default Login;
+export default Login
