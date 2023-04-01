@@ -93,7 +93,7 @@ function Signup({ setUser }) {
                 className="input-field"
                 placeholder="Re-enter Password"
                 type="password"
-                id="password"
+                id="passwordConfirmation"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 required
