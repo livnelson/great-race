@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/Login.css'
 
-function Signup() {
+function Signup({ setUser }) {
   const [email, setEmail] = useState("")
+  const [name, setName] = useState("")
   const [password, setPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
   const [errors, setErrors] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -12,19 +14,29 @@ function Signup() {
 
   function handleSubmit(e) {
     e.preventDefault()
+
+    const userObj = {
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: passwordConfirmation
+    }
+
     setIsLoading(true);
     fetch("/signup", {
-      mode: "no-cors",
+      // mode: "no-cors",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(userObj),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => {
           console.log(user)
+          setUser(user)
+          navigate('/home')
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -49,7 +61,17 @@ function Signup() {
             <form onSubmit={handleSubmit}>
               <input
                 className="input-field"
-                placeholder="Enter Username"
+                placeholder="Enter Your First and Last Name"
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <br />
+              <input
+                className="input-field"
+                placeholder="Enter Your Email Address"
                 type="text"
                 id="username"
                 value={email}
@@ -59,11 +81,21 @@ function Signup() {
               <br />
               <input
                 className="input-field"
-                placeholder="Enter Password"
+                placeholder="Create Password"
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <br />
+              <input
+                className="input-field"
+                placeholder="Re-enter Password"
+                type="password"
+                id="password"
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
                 required
               />
               <br />

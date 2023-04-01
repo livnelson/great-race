@@ -2,8 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "../styles/Login.css"
 
-function Login() {
-	const [username, setUsername] = useState("")
+function Login({ setUser }) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [errors, setErrors] = useState([])
@@ -15,7 +14,7 @@ function Login() {
 		e.preventDefault()
 		setIsLoading(true)
 		fetch("/login", {
-			mode: "no-cors",
+			// mode: "no-cors",
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -24,8 +23,10 @@ function Login() {
 		}).then((r) => {
 			setIsLoading(false)
 			if (r.ok) {
-				r.json().then((user) => {
-					console.log(user)
+				r.json().then((userData) => {
+					console.log(userData)
+					setUser(userData)
+					navigate('/home')
 				})
 			} else {
 				r.json().then((err) => setErrors(err.errors))
@@ -53,9 +54,9 @@ function Login() {
 						<form onSubmit={handleSubmit}>
 							<input
 								className="input-field"
-								placeholder="Enter Username"
+								placeholder="Enter Email"
 								type="text"
-								id="username"
+								id="email"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								required
