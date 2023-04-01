@@ -28,9 +28,10 @@ function Login({ setUser }) {
 					setUser(userData)
 					navigate('/home')
 				})
-			} else {
-				r.json().then((err) => setErrors(err.errors))
-			}
+			} 
+			// else {
+			// 	r.json().then((err) => setErrors(err.errors))
+			// }
 		})
 	}
 
