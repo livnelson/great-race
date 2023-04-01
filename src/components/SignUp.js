@@ -23,7 +23,7 @@ function Signup({ setUser }) {
     }
 
     setIsLoading(true);
-    fetch("http://216.165.251.52:3333/signup", {
+    fetch("/signup", {
       // mode: "no-cors",
       method: "POST",
       headers: {

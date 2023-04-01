@@ -13,7 +13,7 @@ function Login({ setUser }) {
 	function handleSubmit(e) {
 		e.preventDefault()
 		setIsLoading(true)
-		fetch("http://216.165.251.52:3333/login", {
+		fetch("/login", {
 			// mode: "no-cors",
 			method: "POST",
 			headers: {
@@ -29,9 +29,9 @@ function Login({ setUser }) {
 					navigate('/home')
 				})
 			} 
-			// else {
-			// 	r.json().then((err) => setErrors(err.errors))
-			// }
+			else {
+				r.json().then((err) => setErrors(err.errors))
+			}
 		})
 	}
 
