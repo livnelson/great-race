@@ -17,23 +17,30 @@ const ContextProvider = (props) => {
         totalTurns: '',
         ranking: '',
     })
+    const storedGameData = localStorage.getItem("gameData");
 
     useEffect(() => {
-    fetch("/8MEBAA7K6yxrnYes5DTwgA7m-md23.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "get_turn" }),
-    }).then((r) => {
-      // setIsLoading(false);
-        if (r.ok) {
-            r.json().then((gameData) => {
-            setGameData(gameData)
-        })
+        if (storedGameData){
+            setGameData(JSON.parse(storedGameData))
         } else {
-            r.json().then((err) => setErrors(err.errors))
+                fetch("/8MEBAA7K6yxrnYes5DTwgA7m-md23.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ action: "get_turn" }),
+                }).then((r) => {
+              // setIsLoading(false);
+                    if (r.ok) {
+                        r.json().then((gameData) => {
+                            localStorage.setItem("gameData", JSON.stringify(gameData))
+                            setGameData(gameData)
+                    })
+                    } else {
+                        r.json().then((err) => setErrors(err.errors))
+                    }
+                })
         }
-    })
-    }, [])
+    }, [storedGameData])
+        
 
     function submitAnswer(e){
         e.preventDefault()

@@ -13,7 +13,7 @@ function Home({ nickname }) {
   const {gameData, answer, setAnswer, submitAnswer} = useContext(Context)
   const [viewRules, setViewRules] = useState(false)
   const [viewStats, setViewStats] = useState(false)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const stats = <FontAwesomeIcon icon={faRankingStar} />
   const rules = <FontAwesomeIcon icon={faScaleBalanced} />
@@ -42,7 +42,7 @@ function Home({ nickname }) {
       <div className='home-body'>
         <div className='home-card'>
           <div className="game-stuff">
-            {nickname?  <h2 className='greeting'>Your game code: <br/>{gameData.nickname}</h2> : navigate('/login')}
+            {/* {nickname?  <h2 className='greeting'>Your game code: <br/>{gameData.nickname}</h2> : navigate('/login')} */}
             <p>{gameData.body}</p>
             <form onSubmit={(e) => submitAnswer(e)}>
               <div>
