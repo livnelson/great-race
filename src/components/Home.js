@@ -1,12 +1,9 @@
 import { useState, useEffect, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
-// import { useCurrentPosition } from 'react-use-geolocation'
 import Rules from "./Rules"
 import Stats from "./Stats"
-import Logout from "./Logout"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRankingStar } from '@fortawesome/free-solid-svg-icons'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import '../styles/Home.css'
@@ -18,13 +15,11 @@ function Home({ nickname }) {
   const navigate = useNavigate()
 
   const stats = <FontAwesomeIcon icon={faRankingStar} />
-  const logout = <FontAwesomeIcon icon={faRightFromBracket} />
   const rules = <FontAwesomeIcon icon={faScaleBalanced} />
   const home = <FontAwesomeIcon icon={faHouse} />
 
   function handleRules() {
     if (viewStats === true) setViewStats(!viewStats)
-    if (viewLogout === true) setViewLogout(!viewLogout)
     setViewRules(!viewRules)
     console.log('rules clicked')
   }
@@ -55,7 +50,6 @@ function Home({ nickname }) {
           </div>
           {viewStats ? <Stats /> : null}
           {viewRules ? <Rules /> : null}
-          {viewLogout ? <Logout /> : null}
         </div>
       </div>
 
