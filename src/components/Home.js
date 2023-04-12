@@ -53,6 +53,7 @@ function Home({ nickname }) {
                 <input type="submit" value="Submit" className="button" />
               </div>
             </form>
+            <button onClick={() => console.log(gameData)}>Click to check user</button>
           </div>
           {viewStats ? <Stats /> : null}
           {viewRules ? <Rules /> : null}
