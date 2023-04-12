@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "../styles/Login.css"
 
-function Login({ setUser }) {
+function Login({ setNickname }) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [errors, setErrors] = useState([])
@@ -25,8 +25,8 @@ function Login({ setUser }) {
 			if (r.ok) {
 				r.json().then((userData) => {
 					console.log(userData)
-					setUser(userData)
-					navigate('/home')
+					setNickname(userData)
+					navigate('/')
 				})
 			} 
 			else {

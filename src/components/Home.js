@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
+// import { useCurrentPosition } from 'react-use-geolocation'
 import Rules from "./Rules"
 import Stats from "./Stats"
 import Logout from "./Logout"
@@ -10,7 +11,7 @@ import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import '../styles/Home.css'
 
-function Home({ user }) {
+function Home({ nickname }) {
   const [viewRules, setViewRules] = useState(false)
   const [viewStats, setViewStats] = useState(false)
   const [viewLogout, setViewLogout] = useState(false)
@@ -57,13 +58,12 @@ function Home({ user }) {
     console.log('logout clicked')
   }
 
-  // if (!user.name) return navigate('/')
 
   return (
     <div className='home-page'>
       <div className='home-body'>
         <div className='home-card'>
-          {user.name ?  <h2 className='greeting'>Welcome {user.name}!</h2> : navigate('/')}
+          {nickname?  <h2 className='greeting'>Your game code: {nickname}</h2> : navigate('/login')}
           {viewStats ? <Stats /> : null}
           {viewRules ? <Rules /> : null}
           {viewLogout ? <Logout /> : null}
