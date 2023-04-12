@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
 // import { useCurrentPosition } from 'react-use-geolocation'
 import Rules from "./Rules"
@@ -12,17 +12,9 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import '../styles/Home.css'
 
 function Home({ nickname }) {
+  const {gameData, answer, setAnswer, submitAnswer} = useContext(Context)
   const [viewRules, setViewRules] = useState(false)
   const [viewStats, setViewStats] = useState(false)
-  const [viewLogout, setViewLogout] = useState(false)
-  // const [userName, setUserName] = useState('')
-  
-    // useEffect(() => {
-    //   if (user.name) {
-    //     setUserName(user.name)
-    //   }
-    // },[user])
-
   const navigate = useNavigate()
 
   const stats = <FontAwesomeIcon icon={faRankingStar} />
@@ -37,13 +29,6 @@ function Home({ nickname }) {
     console.log('rules clicked')
   }
 
-  function handleHome() {
-    if (viewRules === true) setViewRules(!viewRules)
-    if (viewStats === true) setViewStats(!viewStats)
-    if (viewLogout === true) setViewLogout(!viewLogout)
-    console.log('home clicked')
-  }
-
   function handleStats() {
     if (viewRules === true) setViewRules(!viewRules)
     if (viewLogout === true) setViewLogout(!viewLogout)
@@ -51,19 +36,23 @@ function Home({ nickname }) {
     console.log('stats clicked')
   }
 
-  function handleLogout() {
-    if (viewRules === true) setViewRules(!viewRules)
-    if (viewStats === true) setViewStats(!viewStats)
-    setViewLogout(!viewLogout)
-    console.log('logout clicked')
-  }
-
-
   return (
     <div className='home-page'>
       <div className='home-body'>
         <div className='home-card'>
-          {nickname?  <h2 className='greeting'>Your game code: {nickname}</h2> : navigate('/login')}
+          <div className="game-stuff">
+            {nickname?  <h2 className='greeting'>Your game code: <br/>{gameData.nickname}</h2> : navigate('/login')}
+            <p>{gameData.body}</p>
+            <form onSubmit={(e) => submitAnswer(e)}>
+              <div>
+                <label htmlFor="name">Answer:</label>
+                <input type="text" name="name" value={answer} onChange={(e)=> setAnswer(e.target.value)} />
+              </div>
+              <div className="submitButton">
+                <input type="submit" value="Submit" className="button" />
+              </div>
+            </form>
+          </div>
           {viewStats ? <Stats /> : null}
           {viewRules ? <Rules /> : null}
           {viewLogout ? <Logout /> : null}
@@ -72,10 +61,8 @@ function Home({ nickname }) {
 
       <div className='footer'>
         <div className='footer-buttons'>
-          <button className='footer-button' onClick={handleHome}>{home}</button>
           <button className='footer-button' onClick={handleStats}>{stats}</button>
           <button className='footer-button' onClick={handleRules}>{rules}</button>
-          <button className='footer-button' onClick={handleLogout}>{logout}</button>
         </div>
       </div>
     </div>
