@@ -31,6 +31,12 @@ function Home({ nickname }) {
     console.log('stats clicked')
   }
 
+  function handleHome() {
+    if (viewRules === true) setViewRules(!viewRules)
+    if (viewStats === true) setViewStats(!viewStats)
+    console.log('home clicked')
+  }
+
   return (
     <div className='home-page'>
       <div className='home-body'>
@@ -55,6 +61,7 @@ function Home({ nickname }) {
 
       <div className='footer'>
         <div className='footer-buttons'>
+          <button className='footer-button' onClick={handleHome}>{home}</button>
           <button className='footer-button' onClick={handleStats}>{stats}</button>
           <button className='footer-button' onClick={handleRules}>{rules}</button>
         </div>
