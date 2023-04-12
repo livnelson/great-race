@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import '../styles/Stats.css'
+import { Context } from '../contexts/Context'
 
 function Stats() {
   const {gameData} = useContext(Context)

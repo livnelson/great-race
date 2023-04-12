@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRankingStar } from '@fortawesome/free-solid-svg-icons'
 import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { Context } from '../contexts/Context'
 import '../styles/Home.css'
 
 function Home({ nickname }) {
@@ -26,7 +27,6 @@ function Home({ nickname }) {
 
   function handleStats() {
     if (viewRules === true) setViewRules(!viewRules)
-    if (viewLogout === true) setViewLogout(!viewLogout)
     setViewStats(!viewStats)
     console.log('stats clicked')
   }
