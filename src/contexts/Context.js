@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 // import { useHistory } from "react-router-dom";
 
 export const Context = createContext()
+const api_key = process.env.REACT_APP_PHP_URL
 
 const ContextProvider = (props) => {
     const [errors, setErrors] = useState([])
@@ -25,7 +26,7 @@ const ContextProvider = (props) => {
             setGameData(JSON.parse(storedGameData))
         } else {
             console.log("in fetch")
-            fetch("/8MEBAA7K6yxrnYes5DTwgA7m-md23.php", {
+            fetch(`${api_key}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ action: "get_turn" }),
@@ -42,11 +43,10 @@ const ContextProvider = (props) => {
             })
         }
     }, [storedGameData])
-        
 
     function submitAnswer(e){
         e.preventDefault()
-        fetch(`/8MEBAA7K6yxrnYes5DTwgA7m-md23.php/${gameData.nickname}`, {
+        fetch(`${api_key}/${gameData.nickname}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ action: "get_turn", answer_type: answer})
@@ -59,7 +59,8 @@ const ContextProvider = (props) => {
             gameData,
             answer,
             setAnswer,
-            submitAnswer
+            submitAnswer,
+            errors
         }} >
             {props.children}
         </Context.Provider>
